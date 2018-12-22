@@ -32,8 +32,8 @@ def scraping(link , pd):
     z=0
     while z < pd:
         if progress >=6:
-            
-            print(str(round(z / pd * 100)-5)+"% Scroll Web dan Scraping Ulang")
+            progress = round(z / pd * 100)-5
+            print(str(progress)+"% Scroll Web dan Scraping Ulang")
         #scroll kebawah
         con2.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         #waktu tunggu
@@ -44,8 +44,9 @@ def scraping(link , pd):
         #memilih data yg diambil
         p2 = page2.findAll("li", {"data-item-type":"tweet"})
         
-        if progress >=6:
-            print(str(round(z / pd * 100)-3)+"% Berhasil mendapatkan Data Sebanyak : "+str(len(p2)))
+        if progress >=7:
+            progress = round(z / pd * 100)-3
+            print(str(progress)+"% Berhasil mendapatkan Data Sebanyak : "+str(len(p2)))
         #print banyak data
         if progress == 4:
             print("6%  Berhasil mendapatkan Data Sebanyak : "+str(len(p2)))
@@ -54,6 +55,7 @@ def scraping(link , pd):
     print("99% Cetak data html 10 huruf pertama")
     print(page2.prettify()[1:15])
     print("-----Scraping Selesai-----")
+    con2.close()
     return p2
 
 
@@ -201,7 +203,7 @@ def pembobotantfidf (p2):
                     cf.write(","+data2[f][e])
             cf.write("\n")
     cf.close()
-    print("100% Pembobotan Dokumen Selesai\n\nSilahkan Buka DataMining.csv yang ada di Desktop Anda\n\n\n")
+    print("100% Pembobotan Dokumen Selesai")
 
 
 while menu != 9:
@@ -219,7 +221,7 @@ while menu != 9:
     menu = int(input("Pilih Menu : "))
     
     if menu == 1:
-        print("Untuk Menjalankan Aplikasi ini anda harus menginstal\n ->Selenium\n     pip install selenium\n ->Chrome *Terbaru\n     https://dl.google.com/chrome/install/latest/chrome_installer.exe\n ->Download Chrome Driver\n     https://sites.google.com/a/chromium.org/chromedriver/downloads\n     dan Extract di directory Python.Exe\n     Biasanya di\n     C:-Users-Duyy18-AppData-Local-Programs-Python")
+        print("Untuk Menjalankan Aplikasi ini anda harus menginstal\n ->Progress\n     pip install progress\n ->Selenium\n     pip install selenium\n ->Chrome *Terbaru\n     https://dl.google.com/chrome/install/latest/chrome_installer.exe\n ->Download Chrome Driver\n     https://sites.google.com/a/chromium.org/chromedriver/downloads\n     dan Extract di directory Python.Exe\n     Biasanya di\n     C:-Users-Duyy18-AppData-Local-Programs-Python")
     
     if menu == 2:
         print("1.Tweet Scraping\n8.Kembali\n9.Keluar Aplikasi\n")
@@ -265,4 +267,10 @@ while menu != 9:
     
     
     
+
+
+# In[ ]:
+
+
+
 
